@@ -22,15 +22,32 @@ import java.util.List;
 public class User implements UserDetails {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private long id;
+
+    @Column(unique = true, nullable = false)
     @NotEmpty(message = "username cannot be empty")
-    @Email(message = "Should be an email address")
     private String username;
+
+    @Column(nullable = false)
     @NotEmpty(message = "password cannot be empty")
     private String password;
+
+    @Column(nullable = false)
+    @NotEmpty(message = "email cannot be empty")
+    @Email(message = "Should be an email address")
+    private String email;
     private String firstName;
     private String lastName;
+
     @Enumerated(EnumType.STRING)
     private Role role;
+    private boolean isEnabled;
+
+    @Override
+    public boolean isEnabled() {
+        return isEnabled;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
