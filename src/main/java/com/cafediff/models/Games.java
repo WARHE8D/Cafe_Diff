@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
+import java.util.List;
+import java.util.Set;
+
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,5 +26,10 @@ public class Games {
     private String genre;
 
     private String description;
-    private String platform;
+
+    @ElementCollection
+    private Set<GamingPlatform> gamingPlatform;
+
+    @ManyToMany
+    private Set<GamingSystems> gamingSystems;
 }

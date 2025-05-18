@@ -1,10 +1,9 @@
 package com.cafediff.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Set;
 
 @Entity
 @Getter
@@ -17,6 +16,14 @@ public class GamingSystems {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private PcType pcType;
+
+    @Enumerated(EnumType.STRING)
+    private GamingPlatform gamingPlatform;
     private String status;
+
+    @ManyToMany
+    private Set<Games> games;
+
+    @OneToOne
+    private PlayerSessions playerSessions;
 }

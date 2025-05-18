@@ -53,4 +53,7 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
     }
+
+    @OneToOne
+    private PlayerSessions playerSessions;
 }
