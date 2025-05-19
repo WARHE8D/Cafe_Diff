@@ -16,13 +16,15 @@ public class PlayerSessions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-    @OneToOne(mappedBy = "playerSessions")
-    private User userId;
-
-    @OneToOne(mappedBy = "playerSessions")
-    private GamingSystems systemId;
     private Date startTime;
     private Date endTime;
     private boolean isActive;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User userId;
+
+    @ManyToOne
+    @JoinColumn(name = "gaming_system_id")
+    private GamingSystems gamingSystemId;
 }

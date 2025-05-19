@@ -21,9 +21,6 @@ public class GamingSystems {
     private GamingPlatform gamingPlatform;
     private String status;
 
-    @ManyToMany
+    @OneToMany(mappedBy = "gamingSystemId")
     private Set<Games> games;
-
-    @OneToOne
-    private PlayerSessions playerSessions;
 }

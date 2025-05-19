@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 
 @Builder
@@ -54,6 +55,11 @@ public class User implements UserDetails {
         return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
-    @OneToOne
-    private PlayerSessions playerSessions;
+    @ManyToMany
+    @JoinTable(
+            name = "user_frequent_games",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "game_id")
+    )
+    private Set<Games> frequentGames;
 }

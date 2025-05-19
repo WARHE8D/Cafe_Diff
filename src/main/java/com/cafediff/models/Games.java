@@ -30,6 +30,7 @@ public class Games {
     @ElementCollection
     private Set<GamingPlatform> gamingPlatform;
 
-    @ManyToMany
-    private Set<GamingSystems> gamingSystems;
+    @ManyToOne
+    @JoinColumn(name = "gaming_system_id")
+    private GamingSystems gamingSystemId;
 }
