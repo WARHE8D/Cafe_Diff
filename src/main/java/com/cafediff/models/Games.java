@@ -27,10 +27,11 @@ public class Games {
 
     private String description;
 
-    @ElementCollection
-    private Set<GamingPlatform> gamingPlatform;
-
-    @ManyToOne
-    @JoinColumn(name = "gaming_system_id")
-    private GamingSystems gamingSystemId;
+    @ManyToMany
+    @JoinTable(
+            name = "game_systems",
+            joinColumns = @JoinColumn(name = "game_id"),
+            inverseJoinColumns = @JoinColumn(name = "system_id")
+    )
+    private Set<GamingSystems> gamingSystems;
 }
