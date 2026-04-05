@@ -22,7 +22,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthFilter jwtAuthFilter) throws Exception {
 
         http
-                .csrf(AbstractHttpConfigurer::disable)
+                .csrf(csrf -> csrf
+                        .ignoringRequestMatchers("/cafediff/auth/**", "/cafediff/actuator/**")
+                )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/cafediff/auth/**").permitAll()
                         .requestMatchers("/cafediff/actuator/**").permitAll()
