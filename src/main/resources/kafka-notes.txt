@@ -1,0 +1,11 @@
+> Broker: Removes the tight coupling between services and adds a middleman(broker) in between
+            so the producer can hand over the event and rest assured that the event will be delivered
+> Topics: when a lot of different events(order,payment etc) are being sent over to the broker it gets overloaded and slows down,
+           so we categorize the events and add different sections, these are called topics
+> Streams: real time processing
+> pratition: scalability and performance, partition the "topics" into subsections for better performance.
+                For example divide the Orders topic based on region EU orders, US orders...
+                Note that any producers can write on any partition if their assigned partition is overloaded
+> Consumer groups: Replicates the consumer side service to balance the load
+
+>KRaft: to manage cluster metadata (brokers, topics, partitions)
